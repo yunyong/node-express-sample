@@ -1,5 +1,9 @@
 # node-express-sample
-node-express-sample
+
+* node js
+* ES6
+* jade
+* express
 
 <pre><code>
 $ npm install
