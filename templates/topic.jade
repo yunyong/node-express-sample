@@ -1,0 +1,11 @@
+doctype html
+html(lang="en")
+    head
+        title= title
+    body
+        h1= topic
+        ul
+            each item in list
+                li
+                    a(href=`/topic/${item.replace('.txt','')}`)= item.replace('.txt','')
+        p= desc
