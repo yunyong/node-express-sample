@@ -29,7 +29,20 @@ app.get(['/topic','/topic/:name'], (req, res) => {
     const name = req.params.name;
 
     const callback = (list) => {
-        if(!name){
+        if(name){
+            fs.readFile(`data/${name}.txt`, 'utf8', (err, data) => {
+                if(err){
+                    console.log(err);
+                    res.status(500).send('Internal Server Error');
+                };
+                res.render('topic', {
+                    title : name,
+                    list : list,
+                    topic : name,
+                    desc : data
+                });
+            });
+        } else {
             res.render('topic', {
                 title : 'topic list',
                 list : list,
@@ -37,18 +50,6 @@ app.get(['/topic','/topic/:name'], (req, res) => {
                 desc : ''
             });
         };
-        fs.readFile(`data/${name}.txt`, 'utf8', (err, data) => {
-            if(err){
-                console.log(err);
-                res.status(500).send('Internal Server Error');
-            };
-            res.render('topic', {
-                title : name,
-                list : list,
-                topic : name,
-                desc : data
-            });
-        });
     };
 
     fs.readdir('data', (err, files) => {
