@@ -3,9 +3,13 @@ html(lang="en")
     head
         title= title
     body
-        h1= topic
+        h1
+            a(href="/topic") TOPIC
+        a(href="/topic/create") create new topic
         ul
             each item in list
                 li
                     a(href=`/topic/${item.replace('.txt','')}`)= item.replace('.txt','')
-        p= desc
+        if topic != ''
+            h2= topic
+            p= desc

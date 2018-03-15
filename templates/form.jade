@@ -1,0 +1,16 @@
+doctype html
+html(lang="en")
+    head
+        title create form
+    body
+        h1
+            a(href="/topic") TOPIC
+        div
+            form(action="/topic" method="post")
+                div
+                    label(for="title") title
+                    input(id="title" type="text" name="title")
+                div
+                    label(for="desc") description
+                    textarea(id="desc" name="desc")
+                button(type="submit") SAVE
