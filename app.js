@@ -1,14 +1,19 @@
-const http = require('http');
+const express = require('express');
+const app = express();
 
-const hostname = '127.0.0.1';
-const port = 3000;
+app.locals.pretty = true;
 
-const server = http.createServer((req, res) => {
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/plain');
-    res.end('Hello World');
+app.set('view engine', 'jade');
+app.set('views', './templates')
+
+app.use(express.static('static'));
+
+app.listen(3000, () => {
+    console.log(`Server running at http://127.0.0.1:3000/`);
 });
 
-server.listen(port, hostname, () => {
-    console.log(`Server running at http://${hostname}:${port}/`);
+app.get('/', (req, res) => {
+    res.render('index', {
+        title : 'welcome'
+    });
 });
